@@ -14,10 +14,7 @@ pipeline {
     }
 
    agent  any
-        options {
-                timestamps ()
-                ansiColor('xterm')
-            }
+
     stages {
         stage('Clone Git') {
             steps {
@@ -40,7 +37,7 @@ pipeline {
                 sh 'pwd;cd terraform/ ;terraform show -no-color tfplan > tfplan.txt'
             }
         }
-        stage('Approval') {
+        stage('Terraform apply Approval') {
            when {
                not {
                    equals expected: true, actual: params.autoApprove
