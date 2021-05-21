@@ -14,9 +14,12 @@ pipeline {
     }
 
    agent  any
-        
+        options {
+                timestamps ()
+                ansiColor('xterm')
+            }
     stages {
-        stage('checkout') {
+        stage('Clone Git') {
             steps {
                  script{
                         dir("terraform")
@@ -27,9 +30,9 @@ pipeline {
                 }
             }
 
-        stage('Plan') {
+        stage('Terraform Plan') {
             steps {
-                //sh 'pwd'
+                
                 sh 'pwd;cd terraform/ ; terraform init -input=false'
                 sh 'pwd;cd terraform/ ; terraform workspace new ${environment}'
                 sh 'pwd;cd terraform/ ; terraform workspace select ${environment}'
