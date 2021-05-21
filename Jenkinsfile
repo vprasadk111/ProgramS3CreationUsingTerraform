@@ -1,9 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Starting !!!') {
             steps {
-                    echo 'sample printing !!!!'
+                    sh 'git clone https://github.com/vprasadk111/ProgramS3CreationUsingTerraform.git'
+                    sh 'echo "Started !!!" ' 
                 }
         }
     }
